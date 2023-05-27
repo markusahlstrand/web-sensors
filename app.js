@@ -4,7 +4,8 @@ function handleOrientation(event) {
   updateFieldIfNotNull("Orientation_g", event.gamma);
   incrementEventCount();
 
-  plot.data[0].value = event.beta;
+  data[0].value = event.beta;
+  Plotly.redraw("orientation_b_gauge");
 }
 
 function incrementEventCount() {
