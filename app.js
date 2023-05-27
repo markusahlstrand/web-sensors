@@ -79,49 +79,41 @@ demo_button.onclick = function (e) {
   }
 };
 
-const data_g = [
+const baseData = {
+  domain: { x: [0, 1], y: [0, 1] },
+  gauge: {
+    axis: { range: [-90, 90] },
+  },
+  value: 0,
+  type: "indicator",
+  mode: "gauge+number",
+};
+
+const data_a = [
   {
-    domain: { x: [0, 1], y: [0, 1] },
-    gauge: {
-      axis: { range: [null, 500] },
-    },
-    value: 0,
-    title: { text: "Orientation B" },
-    type: "indicator",
-    mode: "gauge+number",
+    ...baseData,
+    title: { text: "Orientation A" },
   },
 ];
 
 const data_b = [
   {
-    domain: { x: [0, 1], y: [0, 1] },
-    gauge: {
-      axis: { range: [null, 500] },
-    },
-    value: 0,
+    ...baseData,
     title: { text: "Orientation B" },
-    type: "indicator",
-    mode: "gauge+number",
   },
 ];
 
-const data_a = [
+const data_g = [
   {
-    domain: { x: [0, 1], y: [0, 1] },
-    gauge: {
-      axis: { range: [null, 500] },
-    },
-    value: 0,
-    title: { text: "Orientation B" },
-    type: "indicator",
-    mode: "gauge+number",
+    ...baseData,
+    title: { text: "Orientation G" },
   },
 ];
 
 const layout = { width: 300, height: 250, margin: { t: 0, b: 0 } };
-const plotG = Plotly.newPlot("orientation_g_gauge", data_b, layout);
-const plotB = Plotly.newPlot("orientation_b_gauge", data_b, layout);
-const plotA = Plotly.newPlot("orientation_a_gauge", data_b, layout);
+Plotly.newPlot("orientation_g_gauge", data_b, layout);
+Plotly.newPlot("orientation_b_gauge", data_b, layout);
+Plotly.newPlot("orientation_a_gauge", data_b, layout);
 
 /*
   Light and proximity are not supported anymore by mainstream browsers.
