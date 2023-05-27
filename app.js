@@ -3,6 +3,8 @@ function handleOrientation(event) {
   updateFieldIfNotNull("Orientation_b", event.beta);
   updateFieldIfNotNull("Orientation_g", event.gamma);
   incrementEventCount();
+
+  plot.data[0].value = event.beta;
 }
 
 function incrementEventCount() {
@@ -71,6 +73,19 @@ demo_button.onclick = function (e) {
     is_running = true;
   }
 };
+
+const data = [
+  {
+    domain: { x: [0, 1], y: [0, 1] },
+    value: 270,
+    title: { text: "Orientation B" },
+    type: "indicator",
+    mode: "gauge+number",
+  },
+];
+
+const layout = { width: 300, height: 250, margin: { t: 0, b: 0 } };
+const plot = Plotly.newPlot("orientation_b_gauge", data, layout);
 
 /*
   Light and proximity are not supported anymore by mainstream browsers.
