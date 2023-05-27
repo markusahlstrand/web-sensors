@@ -82,7 +82,7 @@ demo_button.onclick = function (e) {
 const baseData = {
   domain: { x: [0, 1], y: [0, 1] },
   gauge: {
-    axis: { range: [-90, 90] },
+    axis: { range: [-180, 180] },
   },
   value: 0,
   type: "indicator",
@@ -111,9 +111,9 @@ const data_g = [
 ];
 
 const layout = { width: 300, height: 250, margin: { t: 0, b: 0 } };
-Plotly.newPlot("orientation_g_gauge", data_b, layout);
+Plotly.newPlot("orientation_g_gauge", data_a, layout);
 Plotly.newPlot("orientation_b_gauge", data_b, layout);
-Plotly.newPlot("orientation_a_gauge", data_b, layout);
+Plotly.newPlot("orientation_a_gauge", data_g, layout);
 
 /*
   Light and proximity are not supported anymore by mainstream browsers.
