@@ -4,8 +4,12 @@ function handleOrientation(event) {
   updateFieldIfNotNull("Orientation_g", event.gamma);
   incrementEventCount();
 
-  data[0].value = event.beta;
+  data_a[0].value = event.alpha;
+  data_b[0].value = event.beta;
+  data_g[0].value = event.gamma;
+  Plotly.redraw("orientation_a_gauge");
   Plotly.redraw("orientation_b_gauge");
+  Plotly.redraw("orientation_g_gauge");
 }
 
 function incrementEventCount() {
@@ -75,10 +79,39 @@ demo_button.onclick = function (e) {
   }
 };
 
-const data = [
+const data_g = [
   {
     domain: { x: [0, 1], y: [0, 1] },
-    value: 270,
+    gauge: {
+      axis: { range: [null, 500] },
+    },
+    value: 0,
+    title: { text: "Orientation B" },
+    type: "indicator",
+    mode: "gauge+number",
+  },
+];
+
+const data_b = [
+  {
+    domain: { x: [0, 1], y: [0, 1] },
+    gauge: {
+      axis: { range: [null, 500] },
+    },
+    value: 0,
+    title: { text: "Orientation B" },
+    type: "indicator",
+    mode: "gauge+number",
+  },
+];
+
+const data_a = [
+  {
+    domain: { x: [0, 1], y: [0, 1] },
+    gauge: {
+      axis: { range: [null, 500] },
+    },
+    value: 0,
     title: { text: "Orientation B" },
     type: "indicator",
     mode: "gauge+number",
@@ -86,7 +119,9 @@ const data = [
 ];
 
 const layout = { width: 300, height: 250, margin: { t: 0, b: 0 } };
-const plot = Plotly.newPlot("orientation_b_gauge", data, layout);
+const plotG = Plotly.newPlot("orientation_g_gauge", data_b, layout);
+const plotB = Plotly.newPlot("orientation_b_gauge", data_b, layout);
+const plotA = Plotly.newPlot("orientation_a_gauge", data_b, layout);
 
 /*
   Light and proximity are not supported anymore by mainstream browsers.
